@@ -19,9 +19,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/service/send',function(Request $request){
-    return response()->json(json_decode($request));
+    return response()->json(json_decode($request->json));
     $client = new Client();
-    $response = $client->post('http://localhost:8000/api/service',['json' => json_decode($request->json,true)]);
+    $response = $client->post("http://$request->ipform/api/service",['json' => json_decode($request->json,true)]);
     return $response->getBody();
     // return response()->json(json_decode($request->json));
 })->name('service');

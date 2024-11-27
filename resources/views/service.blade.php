@@ -4,10 +4,15 @@
 <form id="form" action="{{Route('service')}}" method="post">
     @csrf
     <input type="text" class="d-none" name="json" id="json">
+    <input type="text" class="d-none" name="ip" id="ipform">
 </form>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Crear servicio</h5>
+            <div class="input-group">
+                <span class="input-group-text">Direccion IP</span>
+                <input id="ip" type="text" class="form-control">
+            </div>
             <div class="input-group">
                 <span class="input-group-text">Codigo de Servicio</span>
                 <input id="cod" type="text" class="form-control">
@@ -177,6 +182,7 @@
         // Mostrar en consola el JSON generado
         console.log(JSON.stringify(servicioDto, null, 2));
         document.getElementById('json').value = JSON.stringify(servicioDto, null, 2);
+        document.getElementById('ipform').value = document.getElementById('ip').value;
         document.getElementById('form').submit();
         alert("Datos recolectados con éxito. Revisa la consola para el JSON.");
     });
