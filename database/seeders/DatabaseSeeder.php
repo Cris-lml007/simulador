@@ -51,10 +51,10 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             do {
                 $person = [
-                    'ci' => fake()->numberBetween(1, 1000000),
+                    'ci' => $i+10000,
                     'surname' => fake()->lastName(),
                     'name' => fake()->name(),
-                    'cellular' => fake()->numberBetween(7000000, 9000000),
+                    'cellular' => $i+7000000,
                     'range' => ['sargento', 'teniente', 'capitan', 'mayor'][rand(0, 3)],
                 ];
             } while ($people->contains('ci', $person['ci']) || $people->contains('cellular', $person['cellular']));
