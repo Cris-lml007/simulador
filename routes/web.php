@@ -26,7 +26,7 @@ Route::post('/service/send', function (Request $request) {
     // Añadir la respuesta del servidor
     $r[] = ['respuesta servidor' => (string)$response->getBody()];
     return response()->json($r);
-});
+})->name('service');
 
 Route::get('/service',function(){
     $persons = Person::all();
