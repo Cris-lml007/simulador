@@ -18,15 +18,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/service/send',function(Request $request){
+Route::post('/service/send', function (Request $request) {
     $client = new Client();
-    $response = $client->post("http://$request->ip/api/service",['json' => json_decode($request->json,true)]);
-    // return $response->getBody();
-    $r = json_decode($request->json);
-    $r [] = ['respuesta servidor' => $response->getBody()];
+    $response = $client->post("http://$request->ip/api/service", ['json' => json_decode($request->json, true)]);
+    // Convertir el JSON a array en lugar de stdClass
+    $r = json_decode($request->json, true);
+    // Añadir la respuesta del servidor
+    $r[] = ['respuesta servidor' => (string)$response->getBody()];
     return response()->json($r);
-    // return response()->json(json_decode($request->json));
-})->name('service');
+});
 
 Route::get('/service',function(){
     $persons = Person::all();
