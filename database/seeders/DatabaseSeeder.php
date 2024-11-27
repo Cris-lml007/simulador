@@ -44,6 +44,26 @@ class DatabaseSeeder extends Seeder
             'range' => 'Sargento'
         ]);
 
-        Person::factory(100)->create();
+        // Person::factory(100)->create();
+
+        $people = collect();
+
+        for ($i = 0; $i < 100; $i++) {
+            do {
+                $person = [
+                    'ci' => fake()->numberBetween(1, 1000000),
+                    'surname' => fake()->lastName(),
+                    'name' => fake()->name(),
+                    'cellular' => fake()->numberBetween(7000000, 9000000),
+                    'range' => ['sargento', 'teniente', 'capitan', 'mayor'][rand(0, 3)],
+                ];
+            } while ($people->contains('ci', $person['ci']) || $people->contains('cellular', $person['cellular']));
+
+            $people->push($person);
+        }
+
+        // Inserta en la base de datos en un solo lote
+        Person::upsert($people,[],[]);
+        // DB::table('people')->insert($people->toArray());
     }
 }
