@@ -19,10 +19,10 @@ class PersonFactory extends Factory
         $range = ['sargento','teniente','capitan','mayor'];
         $gender = rand(0,1);
         return [
-            'ci' => fake()->numberBetween(1,1000000),
+            'ci' => fake()->unique()->numberBetween(1,1000000),
             'surname' => fake()->lastName($gender),
             'name' => fake()->name($gender),
-            'cellular' => fake()->numberBetween(7000000,9000000),
+            'cellular' => fake()->unique()->numberBetween(7000000,9000000),
             'range' => $range[rand(0,3)]
         ];
     }
