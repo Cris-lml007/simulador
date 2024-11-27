@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'range' => 'Sanrgento'
         ]);
         Person::create([
-            'ci' => 7322343,
+            'ci' => 7322342,
             'surname' => 'Mamani Mamani',
             'name' => 'Marta',
             'cellular' => 61832344,
