@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->integer('ci');
-            $table->string('surname');
+            $table->string('surname')->unique();
             $table->string('name');
-            $table->integer('cellular');
+            $table->integer('cellular')->unique();
             $table->string('range');
             $table->timestamps();
         });
