@@ -22,7 +22,9 @@ Route::post('/service/send',function(Request $request){
     $client = new Client();
     $response = $client->post("http://$request->ipform/api/service",['json' => json_decode($request->json,true)]);
     // return $response->getBody();
-    return response()->json(json_decode($request->json));
+    $r = json_decode($request->json);
+    $r [] = ['respuesta servidor' => $response->getBody()];
+    return response()->json($r);
     // return response()->json(json_decode($request->json));
 })->name('service');
 
