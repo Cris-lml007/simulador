@@ -22,7 +22,7 @@ class PersonFactory extends Factory
             'ci' => fake()->numberBetween(1,1000000),
             'surname' => fake()->lastName($gender),
             'name' => fake()->name($gender),
-            'cellular' => fake()->phoneNumber(),
+            'cellular' => fake()->numberBetween(7000000,9000000),
             'range' => $range[rand(0,3)]
         ];
     }
